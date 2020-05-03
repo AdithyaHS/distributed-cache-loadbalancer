@@ -8,8 +8,6 @@ public class LoadbalancerApplication {
 
 	public static void main(String[] args) {
 
-
-
 		SpringApplication.run(LoadbalancerApplication.class, args);
 	}
 

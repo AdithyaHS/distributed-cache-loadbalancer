@@ -1,15 +1,18 @@
-package com.distributedsystems.loadbalancer.dto;
+package com.distributedsystems.loadbalancer.dao;
 
 
-public class ClientRequest {
+public class ClientWriteRequest {
     private String key;
     private String value;
     private String lamportClock;
 
-    public ClientRequest(String key, String value, String lamportClock) {
+    public ClientWriteRequest(String key, String value, String lamportClock) {
         this.key = key;
         this.value = value;
         this.lamportClock = lamportClock;
+    }
+
+    public ClientWriteRequest() {
     }
 
     public String getKey() {

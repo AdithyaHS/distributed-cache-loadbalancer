@@ -7,8 +7,6 @@ import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class ClientStubs {
             String[] address = entry.getValue().split(":");
 
             ManagedChannel channel = ManagedChannelBuilder
-                    .forAddress(address[0].trim(), Integer.valueOf(address[1]))
+                    .forAddress("localhost", Integer.valueOf(address[1]))
                     .usePlaintext()
                     .build();
 
