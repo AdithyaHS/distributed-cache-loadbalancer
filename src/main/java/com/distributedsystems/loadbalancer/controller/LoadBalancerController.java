@@ -1,4 +1,4 @@
-package com.distributedsystems.loadbalancer;
+package com.distributedsystems.loadbalancer.controller;
 
 import com.distributedsystems.loadbalancer.Utilities.ControllerConfigurations;
 import com.distributedsystems.loadbalancer.clients.ClientStubs;
