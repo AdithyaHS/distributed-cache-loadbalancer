@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.distributedsystems.loadbalancer.clients;
+package com.distributedsystems.distributedcache.totalorderedbroadcast;
 
 enum RequestType {
     GET = 0;

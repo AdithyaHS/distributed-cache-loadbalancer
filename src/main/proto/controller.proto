@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.distributedsystems.loadbalancer.clients;
+package com.distributedsystems.distributedcache.controller;
 
 import "total_ordered_broadcast.proto";
 
@@ -47,6 +47,6 @@ service ControllerService{
   rpc get(ReadRequest) returns(ReadResponse) {};
   rpc put(WriteRequest) returns(WriteResponse) {};
   rpc broadcastRequestAcknowledgement(Ack) returns(broadcastRequestAcknowledgementResponse){};
-  rpc handleMessageRequest(com.distributedsystems.loadbalancer.clients.BroadcastMessage)
-                returns(com.distributedsystems.loadbalancer.clients.Empty){};
+  rpc handleMessageRequest(com.distributedsystems.distributedcache.totalorderedbroadcast.BroadcastMessage)
+                returns(com.distributedsystems.distributedcache.totalorderedbroadcast.Empty){};
 }

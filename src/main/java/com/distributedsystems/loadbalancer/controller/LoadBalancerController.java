@@ -1,9 +1,9 @@
 package com.distributedsystems.loadbalancer.controller;
 
+import com.distributedsystems.distributedcache.controller.Controller;
+import com.distributedsystems.distributedcache.controller.ControllerServiceGrpc;
 import com.distributedsystems.loadbalancer.Utilities.ControllerConfigurations;
 import com.distributedsystems.loadbalancer.clients.ClientStubs;
-import com.distributedsystems.loadbalancer.clients.Controller;
-import com.distributedsystems.loadbalancer.clients.ControllerServiceGrpc;
 import com.distributedsystems.loadbalancer.dao.ClientWriteRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +65,6 @@ public class LoadBalancerController {
         Controller.WriteResponse writeResponse = stub.withWaitForReady().put(writeRequest);
         return writeResponse;
     }
-
 
     @RequestMapping(value = "/get", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Controller.ReadResponse handleGetValueRequest(@RequestBody ClientWriteRequest clientWriteRequest) {

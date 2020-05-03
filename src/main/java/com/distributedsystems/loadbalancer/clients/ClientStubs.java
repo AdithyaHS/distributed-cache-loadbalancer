@@ -1,6 +1,7 @@
 package com.distributedsystems.loadbalancer.clients;
 
 
+import com.distributedsystems.distributedcache.controller.ControllerServiceGrpc;
 import com.distributedsystems.loadbalancer.configuration.Configuration;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
