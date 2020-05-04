@@ -5,6 +5,8 @@ import com.distributedsystems.distributedcache.controller.ControllerServiceGrpc;
 import com.distributedsystems.loadbalancer.Utilities.ControllerConfigurations;
 import com.distributedsystems.loadbalancer.clients.ClientStubs;
 import com.distributedsystems.loadbalancer.dao.ClientWriteRequest;
+import com.distributedsystems.loadbalancer.dao.ReadResponse;
+import com.distributedsystems.loadbalancer.dao.WriteResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class LoadBalancerController {
 
 
     @RequestMapping(value = "/put", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public Controller.WriteResponse handlePutValueRequest(@RequestBody ClientWriteRequest clientWriteRequest) {
+    public WriteResponse handlePutValueRequest(@RequestBody ClientWriteRequest clientWriteRequest) {
 
         ControllerServiceGrpc.ControllerServiceBlockingStub stub = getClientBlockingStub(WRITE_REQUEST);
 
@@ -63,11 +65,12 @@ public class LoadBalancerController {
         logger.info("Calling the stub from load balancer write request for key " + clientWriteRequest.getKey());
 
         Controller.WriteResponse writeResponse = stub.withWaitForReady().put(writeRequest);
-        return writeResponse;
+        WriteResponse writeResponseObj  = new WriteResponse(writeResponse.getSuccess(), writeResponse.getTimeStamp());
+        return writeResponseObj;
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public Controller.ReadResponse handleGetValueRequest(@RequestBody ClientWriteRequest clientWriteRequest) {
+    public ReadResponse handleGetValueRequest(@RequestBody ClientWriteRequest clientWriteRequest) {
 
         ControllerServiceGrpc.ControllerServiceBlockingStub stub = getClientBlockingStub(READ_REQUEST);
 
@@ -78,7 +81,9 @@ public class LoadBalancerController {
                 .build();
 
         Controller.ReadResponse readResponse = stub.get(readRequest);
-        return readResponse;
+        ReadResponse readResponseObj = new ReadResponse(readResponse.getValue(),readResponse.getSuccess());
+
+        return readResponseObj;
     }
 
     private Controller.ConsistencyLevel getConsistencyLevel(String consistency) {

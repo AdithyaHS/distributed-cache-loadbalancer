@@ -5,14 +5,24 @@ public class ClientWriteRequest {
     private String key;
     private String value;
     private String lamportClock;
+    private String clientTimeStamp;
 
-    public ClientWriteRequest(String key, String value, String lamportClock) {
+    public ClientWriteRequest(String key, String value, String lamportClock, String clientTimeStamp) {
         this.key = key;
         this.value = value;
         this.lamportClock = lamportClock;
+        this.clientTimeStamp = clientTimeStamp;
     }
 
     public ClientWriteRequest() {
+    }
+
+    public String getClientTimeStamp() {
+        return clientTimeStamp;
+    }
+
+    public void setClientTimeStamp(String clientTimeStamp) {
+        this.clientTimeStamp = clientTimeStamp;
     }
 
     public String getKey() {
